@@ -25,3 +25,14 @@
     - info는 resolver의 정보를 담은 객체.
       - info.context는 request와 비슷한 역할임.
         - info.context.user하면 user정보가 나옴.
+
+# 5 GraphQL Api
+
+## 5.1 Pagination
+
+- field 정의에서 일르테면 List에 page 옵션을 주고 싶으면, page=graphene.Int() 식으로, kwargs를 추가해주면 된다.
+- RoomListResponse ???
+  - 이런식으로 처리해주는게 더 좋다고 하는데, list와 total을 가지고 있는 오브젝트.
+  - 코드 참고를 하자~! 이렇게 해주는 방식이 더 좋다고 하는뎅..
+- RoomDetail
+  - id 입력을 필수로 해야하게 하고 싶으면, required=True 를 주면 된다.

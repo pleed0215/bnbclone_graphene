@@ -1,7 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
-from rooms.models import Room
-from users.models import User
+from rooms import schema as rooms_schema
+from users import schema as users_schema
 
 
 # class RoomType(graphene.ObjectType):
@@ -18,27 +18,9 @@ from users.models import User
     instant_book = graphene.Boolean()"""
 
 
-class UserType(DjangoObjectType):
-    class Meta:
-        model = User
 
-
-class RoomType(DjangoObjectType):
-    user = graphene.Field(type=UserType)
-
-    class Meta:
-        model = Room
-
-
-class Query(graphene.ObjectType):
-    hello = graphene.String()
-    rooms = graphene.List(RoomType)
-
-    def resolve_hello(self, info):
-        return "Hello"
-
-    def resolve_rooms(self, info):
-        return Room.objects.all()
+class Query(rooms_schema.Query, users_schema.Query, graphene.ObjectType):
+    pass
 
 
 class Mutation:
