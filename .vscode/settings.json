@@ -1,4 +1,4 @@
 {
     "python.pythonPath": "/Users/pleed0215/.local/share/virtualenvs/bnbclone_graphene-M00_3yOW/bin/python",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "autopep8"
 }

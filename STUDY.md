@@ -36,3 +36,11 @@
   - 코드 참고를 하자~! 이렇게 해주는 방식이 더 좋다고 하는뎅..
 - RoomDetail
   - id 입력을 필수로 해야하게 하고 싶으면, required=True 를 주면 된다.
+
+## 5.3 Create Account
+
+- Query와 Mutation 차이
+  - Query는 데이터 조회, Mutation은 db 조작.
+  - Mutation 클래스 만드는 방법은 코드를 참고.
+    - Mutation class는 모두 mutate method(self, info)가 필요하다.
+- Query class 안의 resolve도 분리하는 것이 좋다.
