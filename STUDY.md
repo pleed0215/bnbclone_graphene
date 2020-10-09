@@ -44,3 +44,8 @@
   - Mutation 클래스 만드는 방법은 코드를 참고.
     - Mutation class는 모두 mutate method(self, info)가 필요하다.
 - Query class 안의 resolve도 분리하는 것이 좋다.
+
+## 5.4 Login
+- DRF 와는 다른 점
+  - jwt 토큰을 encode하면 token 값이 항상 앞에 b'~~~' 이렇게 되어 있는 것을 확인할 수 있는데, 이것의 type을 보면 bytes로 되어 있다.
+    - 이 녀석을 docode해줘야 한다. 그래서 token.decode("utf-8")로 토큰값을 넘겨주도록 하자.
