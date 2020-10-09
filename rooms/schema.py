@@ -13,6 +13,7 @@ class Query(graphene.ObjectType):
     room =graphene.Field(RoomType, id=graphene.Int(required=True))
 
     def resolve_rooms(self, info, page=1):
+        print(info.context.user)
         page = page > 0 and page or 1
         print(page)
         page_size = 50
