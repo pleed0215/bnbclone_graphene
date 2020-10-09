@@ -23,3 +23,10 @@ def resolve_user(self, info, id):
             return user
         except User.DoesNotExist:
             return None
+
+def resolve_me(root, info):
+    user = info.context.user
+    if user is not None and user.is_authenticated:
+        return user
+    else:
+        raise Exception("You need to be logged in")
