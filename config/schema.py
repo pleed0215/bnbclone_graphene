@@ -23,7 +23,7 @@ class Query(rooms_schema.Query, users_schema.Query, graphene.ObjectType):
     pass
 
 
-class Mutation(users_schema.Mutation, graphene.ObjectType):
+class Mutation(users_schema.Mutation, rooms_schema.Mutation, graphene.ObjectType):
     pass
 
 

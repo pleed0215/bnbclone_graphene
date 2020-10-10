@@ -14,3 +14,6 @@ class RoomListResponse(graphene.ObjectType):
     total = graphene.Int()
     page = graphene.Int()
 
+
+class RoomListType(graphene.ObjectType):
+    list = graphene.List(RoomType)

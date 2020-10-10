@@ -5,6 +5,7 @@ from .models import Room
 
 from users.schema import UserType
 from .types import RoomType, RoomListResponse
+from .mutations import ToggleFavsMutation
 
 
 class Query(graphene.ObjectType):
@@ -34,3 +35,6 @@ class Query(graphene.ObjectType):
                 return room
             except Room.DoesNotExist:
                 return None
+
+class Mutation(graphene.ObjectType):
+    toggle_favs = ToggleFavsMutation.Field()
