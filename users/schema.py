@@ -4,7 +4,7 @@ from graphene_django import DjangoObjectType
 from .models import User
 from . import queries as resolvers
 from .types import UserType, UserListResponse
-from .mutations import CreateAccountMutation, LoginMutation
+from .mutations import CreateAccountMutation, LoginMutation, UpdateProfileMutation
 
 
 class Query(graphene.ObjectType):
@@ -17,4 +17,5 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     create_user = CreateAccountMutation.Field()
     login = LoginMutation.Field()
+    update_profile = UpdateProfileMutation.Field()
 

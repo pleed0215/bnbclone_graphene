@@ -6,6 +6,7 @@ import graphene
 from graphene.types.argument import Argument
 
 from .models import User
+from .types import UserType
 
 
 class CreateAccountMutation(graphene.Mutation):
@@ -46,3 +47,32 @@ class LoginMutation(graphene.Mutation):
             return LoginMutation(token=token.decode('utf-8'), pk=user.pk)
         else:
             return LoginMutation(token=None, error="Can't log in.")
+
+class UpdateProfileMutation(graphene.Mutation):
+    class Arguments:
+        first_name = graphene.String()
+        last_name = graphene.String()
+        email = graphene.String()
+
+    ok = graphene.Boolean()
+    message = graphene.String()
+    user = graphene.Field(UserType)
+
+    def mutate(self, info, first_name=None, last_name=None, email=None):
+        user = info.context.user
+        print (user)
+        if user is None or not user.is_authenticated:
+            raise Exception("You need to be logged in")
+        
+        if first_name is not None:
+            user.first_name = first_name
+        if last_name is not None:
+            user.last_name = last_name
+        if email is not None and email != user.email:
+            try:
+                User.objects.get(email=email)
+                return UpdateProfileMutation(ok=False, message="Email address you wrote is already exist. Use other email please.")
+            except User.DoesNotExist:
+                user.email = email
+        user.save()
+        return UpdateProfileMutation(ok=True, message="User information succefully updated", user=user)

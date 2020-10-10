@@ -6,8 +6,15 @@ from .models import Room
 
 class RoomType(DjangoObjectType):
     user = graphene.Field(type=UserType)
+    is_fav = graphene.Boolean()
     class Meta:
         model = Room
+
+    def resolve_is_fav(parent, info):
+        user = info.context.user
+        if user is not None and user.is_authenticated:
+            return parent in user.favs.all()
+        return None
 
 class RoomListResponse(graphene.ObjectType):
     list = graphene.List(RoomType)

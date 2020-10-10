@@ -67,3 +67,9 @@
   - 이런식으로 authorization middleware를 추가하면 된다.
   - rest api 처럼 header에 로그인 정보를 넘겨서 테스트하고 싶은데, 어떻게 하면될까?
     - Altair 라는 구글 확장프로그램을 사용하면 된다.
+
+
+## 5.9 Dynamic Fields
+- REST API 때와 비슷함. is_favs
+  - dynamic field를 추가할 경우에는, resolver를 같이 추가해줘야 한다.
+    - resolver의 인수로는 parent, info (parent는 self에 해당하겠지만, print 해보면 해당 object를 리턴해준다.)
